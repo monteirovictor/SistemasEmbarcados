@@ -7,7 +7,7 @@
 
 def ordenaLista(lista):
     
-    listaX=list((filter(lambda k: "x" in k,lista)))
+    listaX=list(sorted(filter(lambda k: "x" in k,lista)))
     
     listaRestante=list(sorted(filter(lambda k: "x" not in k,lista)))
     
