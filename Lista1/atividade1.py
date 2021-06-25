@@ -13,6 +13,6 @@ def numPalavras(arquivo):
          
             print("String -> [" + str(valor) + "] -> Quantidade:",len(valor))
                
-arquivo = open("texto.txt")
+arquivo = open("Lista1/texto.txt")
 numPalavras(arquivo)
 
