@@ -7,7 +7,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 #import CSV
-df= pd.read_csv("Lista 2/Dados.csv", names=['time','x','y','z','index'])
+df= pd.read_csv("Lista2/Dados.csv", names=['time','x','y','z','index'])
 
 #legendas
 titulo="Acelerometro"
