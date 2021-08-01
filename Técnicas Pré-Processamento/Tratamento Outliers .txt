@@ -1,0 +1,53 @@
+#Tratando Boxplot 
+
+#verificando os outliers
+
+x=df['x']
+y=df['y']
+z=df['z']
+boxplot=[x,y,z]
+
+plt.boxplot(boxplot)
+plt.xticks([1, 2, 3], ['x', 'y', 'z'])
+plt.show()
+
+#Tratamento dos Outliers para os valores de X
+
+#Calculando os Quartis
+percentile25 = df['x'].quantile(0.25)
+percentile75 = df['x'].quantile(0.75)
+
+#Amplitude Interquartílica
+
+iqr=percentile75-percentile25
+
+#Limite superior e Limite inferior
+upper_limit = percentile75 + 1.5 * iqr
+lower_limit = percentile25 - 1.5 * iqr
+
+#Buscando os Outliers
+df[df['x'] > upper_limit]
+df[df['x'] < lower_limit]
+
+#aparando os dados
+
+new_df = df[df['x'] < upper_limit]
+new_df.shape
+
+
+new_df_cap = df.copy()
+new_df_cap['x'] = np.where(
+    new_df_cap['x'] > upper_limit,
+    upper_limit,
+    np.where(
+        new_df_cap['x'] < lower_limit,
+        lower_limit,
+        new_df_cap['x']
+    )
+)
+
+
+
+#exibição
+plt.boxplot(new_df_cap['x'])
+plt.show()

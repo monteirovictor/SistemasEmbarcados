@@ -1,0 +1,36 @@
+from sklearn.neighbors import KNeighborsClassifier
+
+X = df[['x', 'y', 'z']]
+y = df['movimento']
+print(X.shape)
+print(y.shape)
+
+
+print(df.Sensor.unique())
+
+print(np.bincount(y))
+print(df.Sensor.value_counts())
+print('\n# a: '+str(len(df.loc[df['Sensor'] == 'a'])))
+
+
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=0)
+knn = KNeighborsClassifier(n_neighbors = 5)
+knn.fit(X_train, y_train)
+print("KNN accuracy no teste: ", knn.score(X_test, y_test))
+
+
+
+pd.crosstab(y, knn.predict(X), colnames=['Predita'])
+
+
+#matriz confusão
+from sklearn.metrics import plot_confusion_matrix
+plot_confusion_matrix(knn, X, y,values_format='d',cmap=plt.cm.Blues)
+
+
+#informações da classificação
+
+from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
+y_pred = knn.predict(X_test)
+print("Relatório de classificação: \n", classification_report(y_test, y_pred))  
